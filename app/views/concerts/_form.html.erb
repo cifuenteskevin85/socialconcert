@@ -1,0 +1,45 @@
+<% if user_signed_in? %>
+  <%= simple_form_for(@concert, html: {class: "form-horizontal"}) do |f| %>
+    <% if @concert.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@concert.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+        <ul>
+        <% @concert.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <p>
+        <%= f.input :title, :label => 'Name Concert' %>
+    </p>
+    <p> Date</br>
+        <%= f.text_field :date, :id => "datepicker" %>
+    </p>
+    <p>
+        <%= f.input :time_dur, :label => 'Time Concert Details' %>
+    </p>
+    <p>
+        <%= f.input :price, :label => 'Price' %>
+    </p>
+    <p>
+        <%= f.input :name_art, :label => 'Guest Artist' %>
+    </p>
+    <p> Sample Song </p>
+    <%= f.input :song, collection: [@concert.song] %>
+    <p>________</p>
+    <p>Concert Details </p>
+    <%= f.input :full_desc, :label => '-' %>
+    <p>________</p>
+    <div class="field">
+      <%= f.input :poster, as: :file %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Publish Concert Info" %>
+    </div>
+  <% end %>
+<% end %> 

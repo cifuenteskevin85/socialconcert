@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1>All Concerts</h1>
+</div>
+
+<% if user_signed_in? %>
+  <p>
+    <%= link_to 'New Concert', new_concert_path, class: "btn" %>
+  </p>
+  
+<% end %>
+<% @concerts.each do |concert| %>
+  <div class="concert_content well">
+    <h3><%= link_to concert.title, concert %></h3>
+    <p>Day of de Event: <%= concert.date %></p>
+    <p>Guest artis: <%= concert.name_art %></p>
+    <p>Price: USD <%= concert.price %></p>
+    <div class="meta">
+      post by <%= concert.user.full_name %> | <%= concert.created_at.strftime("%Y-%m-%d")%>
+      <% if current_user == concert.user %>
+      <span class = "admin">
+        | <%= link_to 'Edit', edit_concert_path(concert), class: "btn" %></td> 
+        | <%= link_to 'Delete', concert, method: :delete, data: { confirm: 'Are you sure Delete this status?' }, class: "btn" %>
+      </span>
+      <% end %>
+    </div>
+    <% if user_signed_in? && current_user != concert.user %>
+      <div class="follow">
+        <% unless current_user.following?(concert.user) %>
+          <%= link_to "Follow", follow_user_path(concert.user_id), remote: true, class: "btn btn-small" %>
+        <% else %>
+          <%= link_to "Unfollow", unfollow_user_path(concert.user_id), remote: true, class: "btn btn-small" %>
+          <% end %>  
+      </div>
+    <%end%>
+  </div>
+
+<% end %> 
+<%= paginate @concerts%>

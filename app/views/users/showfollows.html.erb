@@ -1,0 +1,36 @@
+<div class= "container">
+  <%= @follows.length %>
+  lrng
+  <table class="table table-hover">
+    <caption>Users who follow me</caption>
+    <thead>
+      <tr>
+        <th>
+          #
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Events
+        </th>
+      </tr>
+    </thead>
+    <% @follows.each do |follow| %>
+      <tbody>
+        <tr>
+          <th>
+            <%= follow.id %>
+          </th>
+          <th>
+            <%= follow.full_name %>
+          </th>
+          <th>
+            <%= link_to "Show Concerts for this User", indexforuser_concert_path(follow) %>
+          </th>
+        </tr>
+        
+      </tbody>
+    <% end %>
+  </table>
+</div>

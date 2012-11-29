@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+  <div class="span6 well">
+      <fieldset>
+        <div class="row-fluid">
+          <legend>
+            <div class="span6">
+              <b><h3><%= @concert.title %></h3></b>
+            </div>
+            <div class="span6">
+              <% if user_signed_in? && (current_user == @concert.user) %>
+                <%= link_to 'Edit Post', edit_concert_path(@concert), class: "btn btn-warning btn-small" %>
+              <% end %>
+            </div>
+          </legend>
+        </div>
+        <p style="color:blue;">
+          <h5>Guest Artist:  <%= @concert.name_art %></h5>
+        </p>
+        <p>
+          Consert day <%= @concert.date %>
+        </p>
+        <p>
+          <%= @concert.full_desc %>
+        </p>
+        <p>
+          Onset and Duration <%= @concert.time_dur %>
+        </p>
+        <p>
+          <h5>Price: USD <%= @concert.price %></h5>
+        </p>
+        <p>
+          <h5>by <%= @concert.user.full_name %></h5>
+        </p>
+      </fieldset>
+  </div>
+  <div class="span6">
+    <% unless @concert.poster_file_name.nil? %>
+      <%= image_tag(@concert.poster.url(:original), :class => 'img-polaroid')%>
+    <%end%>
+  </div>
+</div>
+<% unless @concert.song.blank? %></p>
+  <div class="container">
+    <p>
+      <h5>Sample Song</h5>
+    </p>     
+    <% client = Soundcloud.new(client_id: 'e39a5e9dec883d7b2507d6dbb47887d2') %>
+    <% embed_info = client.get('/oembed', url: @concert.song) %>
+    <%= embed_info['html'].html_safe %>
+  </div>
+<% end %>
+<p>
+  <%= link_to 'Back', concerts_path, class: "btn btn-primary" %>
+</p>
+

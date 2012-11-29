@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebProyect</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8" />
+    <title>jQuery UI Datepicker - Icon trigger</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="//connect.soundcloud.com/sdk.js"></script>
+    <script>
+      SC.initialize({
+        client_id: "e39a5e9dec883d7b2507d6dbb47887d2"
+      });
+    </script>
+</head>
+<body>
+  <div class = "navbar navbar-fixed-top">  
+    <div class = "navbar-inner">  
+      <div class = "container">    
+        <a href = "#" class = "brand"> SocialConcert </a>
+          <ul class ="nav">
+                <li><%= link_to "Homepage ", homepage_path %></li>
+          </ul>
+          <ul class ="nav pull-right">
+            <% if user_signed_in? %>
+              <% if current_user.follow_count > 0%>
+                <li><%= link_to 'following', showfollows_user_path(current_user) %></li>
+              <%end%>
+              <li><%= link_to current_user.full_name, edit_user_registration_path %></li>
+              <li><%= link_to "Log Out ", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Register ", register_path %></li>
+              <li><%= link_to "Log In ", login_path %></li>
+            <% end %>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class = "container">
+    <% flash.each do |type, message| %>
+      <div class = "alert <%= flash_class type %>">
+        <button class="close" data-dismiss="alert">x</button>
+        <%= message %>  
+      </div>
+    <% end %>
+    <%= yield %>
+  </div>
+
+</body>
+</html>

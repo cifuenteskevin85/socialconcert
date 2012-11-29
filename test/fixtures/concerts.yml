@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  date: 2012-11-27
+  time_dur: MyString
+  name_art: MyString
+  price: 9.99
+  full_desc: MyText
+  song: MyString
+
+two:
+  title: MyString
+  date: 2012-11-27
+  time_dur: MyString
+  name_art: MyString
+  price: 9.99
+  full_desc: MyText
+  song: MyString
