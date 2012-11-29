@@ -9,7 +9,6 @@
 <% end %>
 <% @concerts.each do |concert| %>
   <div class="concert_content well">
-    <h2><%= concert.user_id %></h2>
     <h3><%= link_to concert.title, concert %></h3>
     <p>Day of de Event: <%= concert.date %></p>
     <p>Guest artis: <%= concert.name_art %></p>
