@@ -6,8 +6,8 @@
 development:
   adapter: postgresql
   database: socialconcert_db
-  username: postgres
-  password: 8510
+  #username: postgres
+  #password: 8510
   pool: 5
   timeout: 5000
 
@@ -17,8 +17,8 @@ development:
 test:
   adapter: postgresql
   database: socialconcert_db_test
-  username: postgres
-  password: 8510
+  #username: postgres
+  #password: 8510
   pool: 5
   timeout: 5000
 

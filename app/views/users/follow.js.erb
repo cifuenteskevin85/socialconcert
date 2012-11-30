@@ -1,1 +1,7 @@
-$('.follow').html('<%= link_to "Unfollow", unfollow_user_path(@user.id), remote: true, class: "btn btn-small" %>');
+$('.follow-<%=@user.id%>').html('<%= link_to "Unfollow", unfollow_user_path(@user.id), remote: true, class: "btn btn-small" %>');
+
+<% if current_user.follow_count > 0%>
+  $('#following').css({
+    display: "block"
+  });
+<%end%>

@@ -12,6 +12,7 @@ class UsersController < ApplicationController
           #RecommenderMailer.new_follower(@user).deliver if @user.notify_new_follower
           #UserMailer.confirm_follow(@user.email).deliver 
           respond_to do |format|
+            flash[:error] = "You are now following #{@user.full_name}." 
             format.html{redirect_to concerts_path ,notice: "You are now following #{@user.full_name}."}
             format.js
           end

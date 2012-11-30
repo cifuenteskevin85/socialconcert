@@ -29,7 +29,9 @@
           <ul class ="nav pull-right">
             <% if user_signed_in? %>
               <% if current_user.follow_count > 0%>
-                <li><%= link_to 'following', showfollows_user_path(current_user) %></li>
+                <li id = "following">
+                  <%= link_to 'following', showfollows_user_path(current_user)%>
+                </li>
               <%end%>
               <li><%= link_to current_user.full_name, edit_user_registration_path %></li>
               <li><%= link_to "Log Out ", destroy_user_session_path, method: :delete %></li>
@@ -43,12 +45,14 @@
   </div>
 
   <div class = "container">
-    <% flash.each do |type, message| %>
-      <div class = "alert <%= flash_class type %>">
-        <button class="close" data-dismiss="alert">x</button>
-        <%= message %>  
-      </div>
-    <% end %>
+    <div id ="msg">
+      <% flash.each do |type, message| %>
+        <div class = "alert <%= flash_class type %>">
+          <button class="close" data-dismiss="alert">x</button>
+          <%= message %>  
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
   </div>
 

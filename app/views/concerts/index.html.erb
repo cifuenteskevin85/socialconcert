@@ -24,7 +24,7 @@
       <% end %>
     </div>
     <% if user_signed_in? && current_user != concert.user %>
-      <div class="follow">
+      <div class="follow-<%=concert.user_id%>">
         <% unless current_user.following?(concert.user) %>
           <%= link_to "Follow", follow_user_path(concert.user_id), remote: true, class: "btn btn-small" %>
         <% else %>
